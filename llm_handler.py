@@ -577,10 +577,7 @@ class LLMHandler:
 
         openrouter_json = {
             "model": model_id,
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt},
-            ],
+            "prompt": '\n'.join([system_prompt, user_prompt]),
             "temperature": 0.1,  # Lower temperature for more deterministic responses
         }
 
@@ -599,7 +596,7 @@ class LLMHandler:
         # OpenRouter request
         try:
             response = requests.post(
-                self.openrouter_base_url,
+                "https://openrouter.ai/api/v1/completions",  # url for vanilla completions
                 headers=self.openrouter_headers,
                 json=openrouter_json,
                 timeout=self.llm_timeout
@@ -623,7 +620,7 @@ class LLMHandler:
             return dict(error=f"Error: {response.status_code} - {response.text}")
 
         try:
-            content = response.json()["choices"][0]["message"]["content"].strip()
+            content = response.json()["choices"][0]["text"].strip()
         except KeyError as e:
             print(f"Error: no message/content found in LLM response {response.json()["choices"][0]}")
             return dict(error=f"Error: {e}")
