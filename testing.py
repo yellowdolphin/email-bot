@@ -257,14 +257,15 @@ def test_scheduler(emails=None, bot_address='acp@startup.com'):
     generated from conversation time stamps.
     """
     llm_handler = LLMHandler()
-    scheduler_model = 'openrouter/quasar-alpha'  # free+cloaked, excels at this task!
-    # scheduler_model = 'mistralai/mistral-small-24b-instruct-2501'  #  0.1/0.3 $/M tokens in/out
     # scheduler_model = 'deepseek/deepseek-chat-v3-0324:free'  # no structured output
     # scheduler_model = 'google/gemini-2.5-pro-exp-03-25:free'  # structured output, but RESOURCE_EXHAUSTED
     # scheduler_model = 'google/gemini-2.0-flash-exp:free'  # OK but due/probability inconsistent
-    # scheduler_model = 'meta-llama/llama-3.1-8b-instruct'  # plain stupid (8b params), needs very clear prompt
     # scheduler_model = 'mistralai/mistral-small-3.1-24b-instruct'  # worse
+    scheduler_model = 'mistralai/mistral-small-24b-instruct-2501'  #  0.1/0.3 $/M tokens in/out
+    # scheduler_model = 'meta-llama/llama-3.1-8b-instruct'  # plain stupid (8b params), needs very clear prompt
     # scheduler_model = 'openai/gpt-4o-mini'  # better reasoning than mistral-small-24b-instruct, but also 2x more expensive
+    # scheduler_model = 'openrouter/quasar-alpha'  # free+cloaked, excels at this task!
+
 
     verbose = True  # print prompts
     DEBUG = False  # skip LLM calls
