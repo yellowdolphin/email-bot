@@ -41,6 +41,8 @@ models_supporting_structured_output = {
     'mistralai/mistral-small-24b-instruct-2501', # $/M tokens in/out: 0.1/0.3
     'mistralai/mistral-small-3.1-24b-instruct',  # $/M tokens in/out: 0.1/0.3
     'openai/gpt-4o-mini',  # $/M tokens in/out: 0.15/0.6
+    'meta-llama/llama-4-scout',  # $/M tokens in/out: 0.15/0.6 or less
+    'openrouter/quasar-alpha',  # cloaked, free test
 }
 
 
